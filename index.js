@@ -11,7 +11,7 @@ var employee_tracker = function () {
     inquirer.createPrompt([{
         type: 'list',
         name: 'prompt',
-        message: 'Please select from the following options:'
+        message: 'What would you like to do?'
         choices: ['View All Employees', 'View All Roles', 'View All Departments', 'Add an Employee', 'Add a Role', 'Add a Department', 'Update Employee Role', 'Log Out']
     }]).then((answers) => {
 
