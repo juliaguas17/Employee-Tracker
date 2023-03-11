@@ -177,87 +177,87 @@ var employee_tracker = function () {
             })
 
             // Add a department
-            } else if (answers.prompt === 'Add A Department') {
-                inquirer.prompt([{
-                    type: 'input',
-                    name: 'department',
-                    message: 'What is the name of the dpeartment?',
-                    validate: departmentInput => {
-                        if (departmentInput) {
-                            return true;
-                        } else {
-                            console.log('Please Add A Department!');
-                            return false;
-                        }
+        } else if (answers.prompt === 'Add A Department') {
+            inquirer.prompt([{
+                type: 'input',
+                name: 'department',
+                message: 'What is the name of the dpeartment?',
+                validate: departmentInput => {
+                    if (departmentInput) {
+                        return true;
+                    } else {
+                        console.log('Please Add A Department!');
+                        return false;
                     }
-                }]).then((answers) => {
-                    db.query(`INSERT INTO department (name) VALUES (?)`, [answers.department], (err, result) => {
-                        if (err) throw err;
-                        console.log(`Added ${answers.department} to the database.`)
-                        employee_tracker();
-                    });
-                })
+                }
+            }]).then((answers) => {
+                db.query(`INSERT INTO department (name) VALUES (?)`, [answers.department], (err, result) => {
+                    if (err) throw err;
+                    console.log(`Added ${answers.department} to the database.`)
+                    employee_tracker();
+                });
+            })
             
             // Update an employee role
-            } else if (answers.prompt === 'Update Employee Role') {
+        } else if (answers.prompt === 'Update Employee Role') {
                 
-                db.query(`SELECT * FROM employee, role`, (err, result) => {
-                    if (err) throw err;
+             db.query(`SELECT * FROM employee, role`, (err, result) => {
+                if (err) throw err;
     
-                    inquirer.prompt([
-                        {
+                inquirer.prompt([
+                    {
                             // Choose an Employee by last name to Update
-                            type: 'list',
-                            name: 'employee',
-                            message: 'Select an employee to update: ',
-                            choices: () => {
-                                var array = [];
-                                for (var i = 0; i < result.length; i++) {
-                                    array.push(result[i].last_name);
-                                }
-                                var employeeArray = [...new Set(array)];
-                                return employeeArray;
+                        type: 'list',
+                        name: 'employee',
+                        message: 'Select an employee to update: ',
+                        choices: () => {
+                            var array = [];
+                            for (var i = 0; i < result.length; i++) {
+                                array.push(result[i].last_name);
                             }
-                        },
-                        {
-                            // Update the role
-                            type: 'list',
-                            name: 'role',
-                            message: 'Select their new title: ',
-                            choices: () => {
-                                var array = [];
-                                for (var i = 0; i < result.length; i++) {
-                                    array.push(result[i].title);
-                                }
-                                var newArray = [...new Set(array)];
-                                return newArray;
+                            var employeeArray = [...new Set(array)];
+                            return employeeArray;
+                        }
+                    },
+                    {
+                        // Update the role
+                        type: 'list',
+                        name: 'role',
+                        message: 'Select their new title: ',
+                        choices: () => {
+                            var array = [];
+                            for (var i = 0; i < result.length; i++) {
+                                array.push(result[i].title);
+                            }
+                            var newArray = [...new Set(array)];
+                            return newArray;
+                        }
+                    }
+                ]).then((answers) => {
+                    for (var i = 0; i < result.length; i++) {
+                        if (result[i].last_name === answers.employee) {
+                             var name = result[i];
                             }
                         }
-                    ]).then((answers) => {
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].last_name === answers.employee) {
-                                var name = result[i];
-                            }
-                        }
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].title === answers.role) {
-                                var role = result[i];
+                    for (var i = 0; i < result.length; i++) {
+                        if (result[i].title === answers.role) {
+                            var role = result[i];
                             }
                         }
                         
                         // Update employee role
-                        db.query(`UPDATE employee SET ? WHERE ?`, [{role_id: role}, {last_name: name}], (err, result) => {
-                            if (err) throw err;
-                            console.log(`Updated ${answers.employee} role to the database.`)
-                            employee_tracker();
-                        });
-                    })
-                });
+                    db.query(`UPDATE employee SET ? WHERE ?`, [{role_id: role}, {last_name: name}], (err, result) => {
+                        if (err) throw err;
+                        console.log(`Updated ${answers.employee} role to the database.`)
+                        employee_tracker();
+                    });
+                })
+            });
 
             // Log out
-            } else if (answers.prompt === 'Log Out') {
-                db.end();
-                console.log("Good-Bye!");
-            }
-        })
-    };
+        } else if (answers.prompt === 'Log Out') {
+            db.end();
+            console.log("Good-Bye!");
+        }
+    })
+};
