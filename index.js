@@ -11,7 +11,7 @@ var employee_tracker = function () {
     inquirer.createPrompt([{
         type: 'list',
         name: 'prompt',
-        message: 'What would you like to do?'
+        message: 'What would you like to do?',
         choices: ['View All Employees', 'View All Roles', 'View All Departments', 'Add an Employee', 'Add a Role', 'Add a Department', 'Update Employee Role', 'Log Out']
     }]).then((answers) => {
 
@@ -43,8 +43,7 @@ var employee_tracker = function () {
         } else if (answers.prompt === 'Add an Employee') {
             db.query(`SELECT * FROM employee, role`, (err, result) => {
                 if (err) throw err;
-                inquirer.prompt([
-                    { 
+                inquirer.prompt([{ 
                         //Employee First name
                         type: 'input',
                         name: 'firstName',
@@ -94,10 +93,11 @@ var employee_tracker = function () {
                         choices: () => {
                             var array = [];
                             for (var i=0; i < result.length; i++) {
-                                array.push(result[i].last_name;
+                                array.push(result[i].last_name);
                             }
                             var newArray = [...new Set(array)];
                             return newArray;
+                        }
                     }
                 // Insert employee data into db
                 ]).then((answers) => {
