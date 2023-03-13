@@ -48,7 +48,7 @@ var employee_tracker = function () {
                         //Employee First name
                         type: 'input',
                         name: 'firstName',
-                        message: 'Enter first name: ',
+                        message: "What is the employee's first name?" ,
                         validate: firstNameInput => {
                             if (firstNameInput) {
                                 return true;
@@ -62,7 +62,7 @@ var employee_tracker = function () {
                         // Employee Last name
                         type: 'input',
                         name: 'lastName',
-                        message: 'Enter last name: ',
+                        message: "What is the employee's last name?",
                         validate: lastNameInput => {
                             if (lastNameInput) {
                                 return true;
@@ -76,7 +76,7 @@ var employee_tracker = function () {
                         // Employee Role
                         type: 'list',
                         name: 'role',
-                        message: 'Enter job title: ',
+                        message: "What is the employee's role? ",
                         choices: () => {
                             var array = [];
                             for (var i=0; i < result.length; i++) {
@@ -90,15 +90,14 @@ var employee_tracker = function () {
                         // Employee Manager
                         type: 'input',
                         name: 'manager',
-                        message: 'Enter employee manager: ',
-                        validate: managerInput => {
-                            if (managerInput) {
-                                return true;
-                            } else {
-                                console.log('Enter a valid manager.')
-                                return false;
+                        message: "Who is the employee's manager? ",
+                        choices: () => {
+                            var array = [];
+                            for (var i=0; i < result.length; i++) {
+                                array.push(result[i].last_name;
                             }
-                        }
+                            var newArray = [...new Set(array)];
+                            return newArray;
                     }
                 // Insert employee data into db
                 ]).then((answers) => {
@@ -124,12 +123,12 @@ var employee_tracker = function () {
                     {
                         type: 'input',
                         name: 'role',
-                        message: 'Enter role title: ',
+                        message: 'What is the name of the role? ',
                         validate: roleInput => {
                             if (roleInput) {
                                 return true;
                             } else {
-                                console.log('Please enter a valid title.');
+                                console.log('Please enter a valid role.');
                                 return false;
                             }
                         }
@@ -138,7 +137,7 @@ var employee_tracker = function () {
                         // Add department for new role
                         type: 'list',
                         name: 'department',
-                        message: 'Enter department for this role: ',
+                        message: 'Which department does the role belong to? ',
                         choices: () => {
                             var array = [];
                             for (var i = 0; i < result.length; i++) {
@@ -151,7 +150,7 @@ var employee_tracker = function () {
                         // Add salary for new role
                         type: 'input',
                         name: 'salary',
-                        message: 'Enter salary for this role: ',
+                        message: 'What is the salary of the role? ',
                         validate: salaryInput => {
                             if (salaryInput) {
                                 return true;
@@ -181,12 +180,12 @@ var employee_tracker = function () {
             inquirer.prompt([{
                 type: 'input',
                 name: 'department',
-                message: 'What is the name of the dpeartment?',
+                message: 'What is the name of the department?',
                 validate: departmentInput => {
                     if (departmentInput) {
                         return true;
                     } else {
-                        console.log('Please Add A Department!');
+                        console.log('Please enter a valid department.');
                         return false;
                     }
                 }
