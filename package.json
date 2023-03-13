@@ -1,20 +1,17 @@
 {
-    "name": "employee-tracker",
+    "name": "11-ins_connect-node",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node index.js"
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/juliaguas17/Employee-Tracker"
-    },
-    "homepage": "https://github.com/juliaguas17/Employee-Tracker#readme",
+    "author": "",
+    "license": "ISC",
     "dependencies": {
-        "console.table": "^0.10.0",
         "inquirer": "^8.2.4",
-        "mysql2": "^2.2.1"
+        "mysql2": "^2.2.5",
+        "console.table": "^0.0.10"
     }
-}
+  }
+  
