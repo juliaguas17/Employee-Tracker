@@ -86,18 +86,17 @@ var employee_tracker = function () {
                             return newArray;
                         }
                     },
-                    { 
-                        // Employee Manager
+                    { // Adding Employee Manager
                         type: 'input',
                         name: 'manager',
-                        message: "Who is the employee's manager? ",
-                        choices: () => {
-                            var array = [];
-                            for (var i=0; i < result.length; i++) {
-                                array.push(result[i].last_name);
+                        message: 'Who is the employees manager?',
+                        validate: managerInput => {
+                            if (managerInput) {
+                                return true;
+                            } else {
+                                console.log('Please Add A Manager!');
+                                return false;
                             }
-                            var newArray = [...new Set(array)];
-                            return newArray;
                         }
                     }
                 // Insert employee data into db
