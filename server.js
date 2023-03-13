@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-require("console.table");
 
 const db = require('./db/connection');
 
@@ -10,7 +9,7 @@ db.connect(err => {
 });
 
 var employee_tracker = function () {
-    inquirer.createPrompt([{
+    inquirer.prompt([{
         type: 'list',
         name: 'prompt',
         message: 'What would you like to do?',
