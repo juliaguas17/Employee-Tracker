@@ -18,4 +18,4 @@ Developers are often tasked with creating interfaces that make it easy for non-d
 9) Open server.js in seperate terminal window
 10) Run 'node server.js'
 # Usage
-You can view video instructions and an example invoking the application here: [Video Demo](/assets/employee-tracker-video.webm)
+You can view an example invoking the application here: [Video Demo](/assets/employee-tracker-video.webm)
